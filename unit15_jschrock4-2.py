@@ -27,4 +27,5 @@ for repo_dict in repo_dicts:
 title = "Most Starred Java Repos on Github"
 labels = {"x": "Repository", "y": "Stars"}
 fig = px.bar(x=repo_links, y=stars, hover_name=hover_texts, title=title, labels=labels)
+fig.update_layout(title_font_size=28, xaxis_title_font_size=20, yaxis_title_font_size=20)
 fig.show()

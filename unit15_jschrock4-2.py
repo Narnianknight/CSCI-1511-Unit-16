@@ -8,4 +8,19 @@ response = requests.get(url, headers)
 print(f"Status Code: {response.status_code}")
 response_dict = response.json()
 
-print(response_dict["items"])
+repo_dicts = response_dict["items"]
+print(f"Repositories returned: {len(repo_dicts)}")
+
+repo_links, stars, hover_texts = [], [], []
+for repo_dict in repo_dicts:
+    repo_name = repo_dict["name"]
+    repo_url = repo_dict["html_url"]
+    repo_link = f"<a href='{repo_url}'>{repo_name}</a>"
+    repo_links.append(repo_link)
+    stars.append(repo_dict["stargazers_count"])
+    owner = repo_dict['owner']['login']
+    description = repo_dict['description']
+    hover_text = f"{owner}<br>{description}"
+    hover_texts.append(hover_text)
+
+print(repo_links, stars, hover_texts)
